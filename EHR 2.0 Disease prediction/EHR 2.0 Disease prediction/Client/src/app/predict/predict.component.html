@@ -1,0 +1,109 @@
+<div class="container-fluid">
+	<div class="container">
+		<div class="h5 mt-2">Disease Prediction</div>
+		<hr/>
+		
+		<div class="card shadow symptoms mb-2">
+			<div class="card-body">
+				<div
+						*ngIf="SelectedSymptoms.length >= 1; else nosymptoms"
+						class="row g-1"
+				>
+					<div
+							*ngFor="let symptom of SelectedSymptoms; let i = index"
+							class="col symptom shadow mx-2 my-1"
+					>
+						<span class="mx-1">{{ symptom }}</span>
+						<i
+								(click)="removeSymptom(i)"
+								class="fas fa-times-circle close-icon"
+						></i>
+					</div>
+				</div>
+				<ng-template #nosymptoms>
+					<span class="card-subtitle text-danger">Select Symptoms...!</span>
+				</ng-template>
+			</div>
+		</div>
+		
+		<div class="row mt-2 d-flex">
+			<div class="col-6">
+				<div class="mb-3">
+					<input
+							(change)="addSymptom()"
+							[(ngModel)]="symptom"
+							class="form-control"
+							id="exampleDataList"
+							list="datalistOptions"
+							name="symptom"
+							placeholder="Type to search symptoms"
+							type="text"
+					/>
+					
+					<datalist id="datalistOptions">
+						<option *ngFor="let s of DiseaseSymptoms" [value]="s"></option>
+					</datalist>
+				</div>
+			</div>
+			<div class="col-6">
+				<button
+						(click)="predict()"
+						*ngIf="!predicting"
+						class="btn btn-success"
+						type="button"
+				>
+					Predict Disease
+				</button>
+				<div *ngIf="predicting" class="prg d-flex align-items-center">
+					<span class="mx-2">Predicting...</span>
+					<div class="spinner-border text-success" role="status">
+						<span class="visually-hidden">Loading...</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="text-center text-danger">
+			{{errorMsg}}
+		</div>
+		
+		<div *ngIf="predictedData" class="card shadow p-2">
+			<div>
+				<div class="h6">Predicted Disease :
+					<span class="text-danger">{{ predictedData.predicted_disease }}</span>
+				</div>
+			</div>
+			<div>
+				<div class="h6">Disease Description: <span class="text-info"> {{ predictedData.dis_des }}</span></div>
+			</div>
+			<div>
+				<h6>Precautions:</h6>
+				<ul>
+					<li *ngFor="let p of predictedData.my_precautions">{{ p }}</li>
+				</ul>
+			</div>
+			<div>
+				<h6>Medications:</h6>
+				<ul>
+					<li *ngFor="let m of predictedData.medications">{{ m }}</li>
+				</ul>
+			</div>
+			
+			<div>
+				<h6>Recommended Diet:</h6>
+				<ul>
+					<li *ngFor="let d of predictedData.my_diet">{{ d }}</li>
+				</ul>
+			</div>
+			
+			<div>
+				<h6>Recommended Workout:</h6>
+				<ul>
+					<li *ngFor="let w of predictedData.workout">{{ w }}</li>
+				</ul>
+			</div>
+		</div>
+	
+	
+	</div>
+</div>

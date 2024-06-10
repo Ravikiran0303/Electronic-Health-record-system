@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#">EHR 2.0 LOGO</a>
+		<button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+		        class="navbar-toggler"
+		        data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto ">
+				<li class="nav-item">
+					<a [routerLink]="'patient'" class="nav-link"> <i class="fas fa-user-injured"></i> Patient</a>
+				</li>
+				<li class="nav-item">
+					<a [routerLink]="'doctor'" class="nav-link"><i class="fas fa-user-md"></i> Doctor</a>
+				</li>
+				<li class="nav-item">
+					<a [routerLink]="'predict_disease'" class="nav-link">
+						<i class="fas fa-diagnoses"></i> Predict Disease</a>
+				</li>
+			</ul>
+			<div class="d-flex">
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item">
+						<a class="nav-link" routerLink=admin> <i class="fas fa-user-shield"></i> Admin</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link"><i class="fas fa-info-circle"></i> About</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</nav>
